@@ -1,0 +1,25 @@
+# version: "3.9"
+services:
+  backend:
+    build: ./backend
+    container_name: chatbot-backend
+    ports:
+      - "8000:8000"
+    environment:
+    - DOCS_DIR=/app/app/data
+    - HOST=0.0.0.0
+    - PORT=8000
+    restart: unless-stopped
+
+
+  frontend:
+    build:
+      context: ./chatbot-ui
+      args:
+        - VITE_API_URL=http://backend:8000
+    container_name: chatbot-frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+    restart: unless-stopped
