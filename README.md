@@ -4,5 +4,5 @@
 ## Quick Start (Docker)
 ```bash
 git clone <this-repo>
-cd chatbot-app
+cd chatbot
 docker compose up --build
